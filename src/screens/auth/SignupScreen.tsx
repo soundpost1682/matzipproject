@@ -1,15 +1,31 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import CustomButton from '@/components/CustomButton';
+import InputField from '@/components/InputField';
+import {StyleSheet, View, Text,SafeAreaView} from 'react-native';
+
 
 function SignupScreen() {
   return (
-    <SafeAreaView>
-      <Text>SignupScreen</Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.inputContainer}>
+        <InputField placeholder='Email' />
+        <InputField placeholder='Password' />
+        <InputField placeholder='Confirm Password' />
+      </View>
+      <CustomButton label='Sign-up' variant='filled' size='large'/>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    margin:30,
+  },
+  inputContainer:{
+    gap:20,
+    marginBottom:30,
+  }
+});
 
 export default SignupScreen;
