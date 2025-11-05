@@ -3,15 +3,16 @@ import {StyleSheet, Text, TextInput, TextInputProps, View} from 'react-native';
 import { colors } from '@/constants/colors';
 
 interface InputFieldProps extends TextInputProps{
-    error ?:string;
+    error? : string;
+    touched ? : boolean
 
 }
 
-function InputField({error, ...props}: InputFieldProps) {
+function InputField({error, touched, ...props}: InputFieldProps) {
   return (
     <View>
-        <TextInput style={[styles.input, Boolean(error) && styles.inputError]} {...[props]}/>
-        {Boolean(error) && <Text style={styles.error}>{error}</Text>}
+        <TextInput style={[styles.input, touched && Boolean(error) && styles.inputError]} {...props} />
+        {touched && Boolean(error) && <Text style={styles.error}>{error}</Text>}
     </View>
   )
 }
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
         height:50,
         paddingHorizontal:10,
         fontSize:16,
-        color:colors.BLACK
+        color:colors.BLACK,
     },
     error :{
         color:colors.RED_500,
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     inputError:{
         borderWidth:1,
         borderColor:colors.RED_300
-    }
+    },
 });
 
 export default InputField;

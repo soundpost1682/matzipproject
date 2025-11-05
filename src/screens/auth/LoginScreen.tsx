@@ -9,10 +9,10 @@ function LoginScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
-        <InputField placeholder='Email' error='Type your email.'/>
-        <InputField placeholder='Password' />
+        <InputField placeholder='Email' />
+        <InputField placeholder='Password' secureTextEntry/>
       </View>
-      <CustomButton label='Login' variant='filled' size='large'/>
+      <CustomButton label='Log-In' variant='filled' size='large'/>
     </SafeAreaView>
   );
 }
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   inputContainer:{
     gap:20,
     marginBottom:30,
-    color:colors.BLUE_400
+    
   }
 });
 
