@@ -2,39 +2,23 @@ import React, { useState } from 'react';
 import {StyleSheet, View, Text,SafeAreaView} from 'react-native';
 import CustomButton from '@/components/CustomButton';
 import InputField from '@/components/InputField';
+import useForm from '@/hooks/useForm';
+import { validateSignup } from '@/utils/validation';
 
 
 function SignupScreen() {
-  const [values, setValues] = useState({
-    email:'',
-    password:'',
-    passwordConfirm:'',
-  })
-  const [touched, setTouched] = useState({
-    email:false,
-    password:false,
-    passwordConfirm:false,
-  })
-  const [errors, setErrors] = useState({
-    email:false,
-    password:false,
-    passwordConfirm:false,
-  })
+  const signup = useForm({
+    initialValue : {email:'', password:'', passwordConfirm:''},
+    validate: validateSignup,
 
-  const handleChangeValue = (name:string, text:string) => {
-    setValues(prev => ({...prev, [name]: text}))
-  }
-
-  const handleBlur = (name:string) =>{
-    setTouched(prev => ({...prev, [name] : true}))
-  }
+  })
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
-        <InputField placeholder='Email' value={values.email} touched={touched.email} onChangeText={text=>handleChangeValue('email', text)} onBlur={()=>handleBlur('email')} error={'your email??'}/>
-        <InputField secureTextEntry textContentType='oneTimeCode' placeholder='Password' value={values.password} touched={touched.password} onChangeText={text=>handleChangeValue('password', text)} onBlur={()=>handleBlur('password')}/>
-        <InputField secureTextEntry placeholder='Confirm Password' value={values.passwordConfirm} touched={touched.passwordConfirm} onChangeText={text=>handleChangeValue('passwordConfirm', text)} onBlur={()=>handleBlur('passwordConfirm')}/>
+        <InputField placeholder='Email' touched={signup.touched.email} error={signup.errors.email} {...signup.getTextInputProps('email')} />
+        <InputField secureTextEntry textContentType='oneTimeCode' placeholder='Password' touched={signup.touched.password} error={signup.errors.password} {...signup.getTextInputProps('password')} />
+        <InputField secureTextEntry placeholder='Confirm Password' touched={signup.touched.passwordConfirm} error={signup.errors.passwordConfirm} {...signup.getTextInputProps('passwordConfirm')}/>
       </View>
       <CustomButton label='Sign-Up' variant='filled' size='large'/>
     </SafeAreaView>
