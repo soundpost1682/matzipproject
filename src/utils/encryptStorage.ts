@@ -1,6 +1,6 @@
 import EncryptedStorage from 'react-native-encrypted-storage';
 
-async function setEncrypStorage<T>(key:string, data:T) {
+async function setEncryptStorage<T>(key:string, data:T) {
     await EncryptedStorage.setItem(key, JSON.stringify(data))
 }
 
@@ -16,4 +16,4 @@ async function removeEncryptStorage(key:string) {
     }
 }
 
-export {setEncrypStorage, getEncryptStorage, removeEncryptStorage}
+export {setEncryptStorage, getEncryptStorage, removeEncryptStorage}
