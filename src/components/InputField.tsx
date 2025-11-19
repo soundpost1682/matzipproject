@@ -6,6 +6,7 @@ interface InputFieldProps extends TextInputProps{
     ref?:Ref<TextInput>;
     error? : string;
     touched ? : boolean
+
 }
 
 function InputField({ref, error, touched, ...props}: InputFieldProps) {
